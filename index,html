@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario SCM Interactivo</title>
+    <style>
+        /* Estilos generales para Genially */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            padding: 15px;
+            margin: 0;
+            overflow-x: hidden;
+            font-size: 14px;
+        }
+
+        .question-container {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: #007bff; /* Azul vibrante */
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .option-label {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .option-label:hover {
+            background-color: #e9f7ff;
+            border-color: #007bff;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        /* Estilos para la retroalimentación */
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 13px;
+            line-height: 1.4;
+            display: none; /* Oculto por defecto */
+        }
+
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .result-text {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+
+        <div class="question-container">
+            <h3>1. ¿Cuál es el papel central del cliente en la SCM moderna?</h3>
+            <label class="option-label" onclick="checkAnswer(1, 'b', this)">
+                <input type="radio" name="q1" value="a"> a) Solo recibir el producto final sin importar los procesos.
+            </label>
+            <label class="option-label" onclick="checkAnswer(1, 'b', this)">
+                <input type="radio" name="q1" value="b"> b) Determinar prioridades y evaluar la eficiencia de la cadena de suministro.
+            </label>
+            <label class="option-label" onclick="checkAnswer(1, 'b', this)">
+                <input type="radio" name="q1" value="c"> c) Supervisar únicamente la producción de materias primas.
+            </label>
+            <div id="feedback1" class="feedback">
+                <span class="result-text"></span>
+                En la SCM moderna, el cliente es el eje central, ya que la lealtad se basa en cumplir sus expectativas de rapidez, calidad y precisión en todo el proceso, desde la materia prima hasta la entrega final.
+            </div>
+        </div>
+
+        <div class="question-container">
+            <h3>2. ¿Qué característica permite a los sistemas de SCM de vanguardia mejorar la respuesta ante la demanda del cliente?</h3>
+            <label class="option-label" onclick="checkAnswer(2, 'b', this)">
+                <input type="radio" name="q2" value="a"> a) Sistemas locales independientes y no integrados.
+            </label>
+            <label class="option-label" onclick="checkAnswer(2, 'b', this)">
+                <input type="radio" name="q2" value="b"> b) Tecnologías en la nube totalmente integradas que brindan visibilidad del 100%.
+            </label>
+            <label class="option-label" onclick="checkAnswer(2, 'b', this)">
+                <input type="radio" name="q2" value="c"> c) Procesos manuales sin seguimiento de inventario.
+            </label>
+            <div id="feedback2" class="feedback">
+                <span class="result-text"></span>
+                Los sistemas de SCM de vanguardia permiten gestionar toda la cadena como un ecosistema, integrando todos los procesos y garantizando visibilidad total para reaccionar con rapidez ante cambios de mercado y expectativas del cliente.
+            </div>
+        </div>
+
+        <div class="question-container">
+            <h3>3. ¿Cuál es el objetivo de la planificación de la producción en la gestión de la oferta y la demanda?</h3>
+            <label class="option-label" onclick="checkAnswer(3, 'c', this)">
+                <input type="radio" name="q3" value="a"> a) Aumentar inventarios sin considerar la demanda.
+            </label>
+            <label class="option-label" onclick="checkAnswer(3, 'c', this)">
+                <input type="radio" name="q3" value="b"> b) Vender productos sin control de inventario.
+            </label>
+            <label class="option-label" onclick="checkAnswer(3, 'c', this)">
+                <input type="radio" name="q3" value="c"> c) Satisfacer la demanda del cliente sin generar exceso de inventario.
+            </label>
+            <div id="feedback3" class="feedback">
+                <span class="result-text"></span>
+                La planificación de la producción permite ajustar la fabricación y distribución para cumplir con la demanda real del cliente, evitando desperdicios y garantizando un flujo eficiente de inventario.
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Función de JavaScript para manejar la interactividad
+        function checkAnswer(questionNum, correctOption, selectedLabel) {
+            const questionName = 'q' + questionNum;
+            const feedbackId = 'feedback' + questionNum;
+            const feedbackElement = document.getElementById(feedbackId);
+            const resultTextElement = feedbackElement.querySelector('.result-text');
+            const selectedInput = selectedLabel.querySelector('input[type="radio"]');
+            
+            // Si la respuesta ya ha sido seleccionada, no hacer nada
+            if (selectedInput.checked && feedbackElement.style.display === 'block') {
+                return;
+            }
+
+            // Marcar el radio button seleccionado
+            selectedInput.checked = true;
+
+            // Obtener el valor de la opción seleccionada (a, b, o c)
+            const selectedValue = selectedInput.value;
+
+            // Determinar si es correcta
+            const isCorrect = selectedValue === correctOption;
+
+            // Limpiar estilos de otras opciones de la misma pregunta
+            const allLabels = document.querySelectorAll(`input[name="${questionName}"]`).forEach(input => {
+                input.parentElement.style.backgroundColor = '#ffffff';
+                input.parentElement.style.borderColor = '#ddd';
+            });
+
+            // Aplicar estilo a la opción seleccionada
+            selectedLabel.style.backgroundColor = isCorrect ? '#c3e6cb' : '#f5c6cb';
+            selectedLabel.style.borderColor = isCorrect ? '#155724' : '#721c24';
+
+            // Mostrar retroalimentación
+            feedbackElement.style.display = 'block';
+            feedbackElement.classList.remove('correct', 'incorrect');
+            
+            if (isCorrect) {
+                feedbackElement.classList.add('correct');
+                resultTextElement.textContent = '¡Correcto! ✅';
+            } else {
+                feedbackElement.classList.add('incorrect');
+                resultTextElement.textContent = 'Incorrecto. ❌';
+            }
+
+            // Deshabilitar todas las opciones después de la selección
+            document.querySelectorAll(`input[name="${questionName}"]`).forEach(input => {
+                input.disabled = true;
+            });
+        }
+    </script>
+
+</body>
+</html>
